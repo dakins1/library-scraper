@@ -35,12 +35,9 @@ if __name__ == "__main__":
     temp_libdata['searchVal'] = temp_libdata['Name'] + " " + temp_libdata['City'] + " " + temp_libdata['State']
     
     searchData = list(temp_libdata[['searchVal', 'Name', 'City', 'State']].itertuples(index=False, name=None))
-    #searchData = searchData[:100]
     searchData.append(("fauiwehfgnp;iAOUWENvgjpo;iAJWRhbgahwieuhyfaliUWehfouaw", 'no', 'city', 'here'))
     
     t0 = time.perf_counter()
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-        list_of_results = list(executor.map(get_websites, searchData))
     t1 = time.perf_counter()
 
     res_df = pd.DataFrame(list_of_results, columns=['website', 'Name', 'City', 'State'])
